@@ -8,7 +8,6 @@ from .config import ROWS, COLS, RED, WHITE, SQUARE_SIZE, BLACK, YELLOW, GREY, PA
 class Board:
     def __init__(self):
         self.board = [[]]
-        self.selected_piece = None
         self.red_left = self.white_left = 12
         self.black_kings = self.yellow_kings = 0
         self.draw_pieces()
@@ -54,6 +53,32 @@ class Board:
     def select_piece(self, row, col):
         return self.board[row][col]
 
+    def get_valid_moves(self, piece):
+        moves = {}
+        left = piece.col - 1
+        right = piece.col + 1
+        row = piece.row
+
+        if piece.color == BLACK or piece.king:
+            pass
+        if piece.color == YELLOW or piece.king:
+            pass
+
+    def _traverse_left(self, start, stop, step, color, left, skipped=[]):
+        moves = {}
+        last = []
+        for r in range(start, stop, step):
+            if left < 0:
+                break
+            current = self.board.select_piece(r, left)
+            if current == 0:
+                if skip_only and not last:
+                    break
+            left -= 1
+        pass
+
+    def _traverse_right(self, start, stop, step, color, right, skipped=[]):
+        pass
 
 
 class Piece:

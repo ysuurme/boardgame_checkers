@@ -5,29 +5,32 @@ Part 2 - https://www.youtube.com/watch?v=LSYj8GZMjWY
 Part 3 - https://www.youtube.com/watch?v=_kOXGzkbnps
 """
 
+# todo part 3 29:00
 import pygame
 
 from checkers.config import WIDTH, HEIGHT, SQUARE_SIZE
-from checkers.board import Board
+from checkers.game import Game
 
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Checkers')
 
 FPS = 60
 
+
 def mouse_select_piece(pos):
-    x,y = pos
+    x, y = pos
     row = y // SQUARE_SIZE
     col = x // SQUARE_SIZE
     return row, col
 
+
 def main():
     run = True
     clock = pygame.time.Clock()
-    board = Board()
+    game = Game(WIN)
 
-    piece = board.select_piece(0, 1)
-    board.move_piece(piece, 4, 3)
+    # piece = board.select_piece(0, 1)
+    # board.move_piece(piece, 4, 3)
 
     while run:
         clock.tick(FPS)
@@ -42,8 +45,7 @@ def main():
                 piece = board.select_piece(row, col)
                 board.move_piece(piece, 0, 0)
 
-        board.create_board(WIN)
-        pygame.display.update()
+        game.update()
 
     pygame.quit()
 
