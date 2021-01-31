@@ -14,14 +14,14 @@ class Board:
         self.red_kings = self.white_kings = 0
         self.draw_pieces()
 
-    def draw_board(self, win):
+    def draw_board(self, win):  # TWT draw_squares
         win.fill(WHITE)
         for row in range(ROWS):
             for col in range(row % 2, ROWS, 2):
                 pygame.draw.rect(win, RED, (row * SQUARE_SIZE, col * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
 
 
-    def draw_pieces(self):  #TWT Create board
+    def draw_pieces(self):  #TWT create board
         for row in range(ROWS):
             self.board.append([])
             for col in range(COLS):
@@ -60,6 +60,7 @@ class Piece:
         self.x = 0
         self.y = 0
 
+        self.calc_piece_pos()
     def __repr__(self):
         return str(self.color)
 
