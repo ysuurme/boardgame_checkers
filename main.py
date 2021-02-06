@@ -5,13 +5,12 @@ Part 2 - https://www.youtube.com/watch?v=LSYj8GZMjWY
 Part 3 - https://www.youtube.com/watch?v=_kOXGzkbnps
 """
 
-# todo part 3 29:00
 import pygame
-from checkers.config import WIDTH, HEIGHT, SQUARE_SIZE
+from checkers.config import WIDTH, HEIGHT, SQUARE_SIZE, BLACK, YELLOW
 from checkers.game import Game
 
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption('Checkers')
+pygame.display.set_caption('Bossche Checkers, verzin is wah gekkers!')
 
 FPS = 60
 
@@ -28,9 +27,6 @@ def main():
     clock = pygame.time.Clock()
     game = Game(WIN)
 
-    # piece = board.select_piece(0, 1)
-    # board.move_piece(piece, 4, 3)
-
     while run:
         clock.tick(FPS)
 
@@ -41,8 +37,12 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
                 row, col = mouse_select_piece(pos)
-                piece = game.select_piece(row, col)
-                game._move_piece(4, 3)
+                if game.turn == BLACK:
+                    print("It's the turn of BLACK")
+                    game.select_piece(row, col)
+                elif game.turn == YELLOW:
+                    print("It's the turn of YELLOW")
+                    game.select_piece(row, col)
 
         game.update()
 

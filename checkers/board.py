@@ -53,8 +53,9 @@ class Board:
     def select_piece(self, row, col):
         return self.board[row][col]
 
-    def draw_valid_moves(self):
-
+    def remove_piece(self, pieces):
+        for piece in pieces:
+            self.board[piece.row][piece.col] = 0
 
     def get_valid_moves(self, piece):
         moves = {}
@@ -77,7 +78,7 @@ class Board:
         for r in range(start, stop, step):
             if left < 0:
                 break
-            current = self.board.select_piece[r][left]
+            current = self.board[r][left]
             if current == 0:
                 if skipped and not last:
                     break
@@ -95,7 +96,7 @@ class Board:
 
                     moves.update(self._traverse_left(r+step, row, step, color, left - 1, skipped=last))
                     moves.update(self._traverse_right(r + step, row, step, color, left + 1, skipped=last))
-                    break
+                break
 
             elif current.color == color:
                 break
@@ -112,7 +113,7 @@ class Board:
         for r in range(start, stop, step):
             if right >= COLS:
                 break
-            current = self.board.select_piece[r][right]
+            current = self.board[r][right]
             if current == 0:
                 if skipped and not last:
                     break
@@ -130,7 +131,7 @@ class Board:
 
                     moves.update(self._traverse_left(r + step, row, step, color, right - 1, skipped=last))
                     moves.update(self._traverse_right(r + step, row, step, color, right + 1, skipped=last))
-                    break
+                break
 
             elif current.color == color:
                 break

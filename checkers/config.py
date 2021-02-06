@@ -12,6 +12,9 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 YELLOW = (255, 255, 0)
 GREY = (128, 128, 128)  # Piece outline color
+# Potential moves indicator
+BLUE = (0, 0, 255)
+INDICATOR_SIZE = 15
 # Piece size and outline
 PADDING = 20
 OUTLINE = 2
