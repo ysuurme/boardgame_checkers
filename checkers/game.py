@@ -3,12 +3,13 @@ import pygame
 from .config import BLACK, YELLOW
 from .board import Board
 
+
 class Game:
     def __init__(self, win):
         self._init()
         self.win = win
 
-    def _init():
+    def _init(self):
         self.selected = None
         self.board = Board()
         self.turn = BLACK
@@ -25,8 +26,8 @@ class Game:
         if self.selected:
             result = self._move_piece(row, col)
             if not result:
-                self.select_piece() = None
-                self.select_piece(row, col)
+                self.selected = None
+                return self.select_piece(row, col)
 
         piece = self.board.select_piece(row, col)
         if piece != 0 and piece.color == self.turn:
@@ -36,12 +37,13 @@ class Game:
 
         return False
 
-    def move_piece(self, row, col):
+    def _move_piece(self, row, col):
         piece = self.board.select_piece(row, col)
         if self.selected and piece == 0 and (row, col) in self.valid_moves:
             self.board.move_piece(self.selected, row, col)
         else:
             return False
+
         return True
 
     def change_turn(self):
@@ -49,5 +51,3 @@ class Game:
             self.turn = YELLOW
         else:
             self.turn = BLACK
-
-

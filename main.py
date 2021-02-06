@@ -7,7 +7,6 @@ Part 3 - https://www.youtube.com/watch?v=_kOXGzkbnps
 
 # todo part 3 29:00
 import pygame
-
 from checkers.config import WIDTH, HEIGHT, SQUARE_SIZE
 from checkers.game import Game
 
@@ -42,8 +41,8 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
                 row, col = mouse_select_piece(pos)
-                piece = board.select_piece(row, col)
-                board.move_piece(piece, 0, 0)
+                piece = game.select_piece(row, col)
+                game._move_piece(4, 3)
 
         game.update()
 
