@@ -22,13 +22,18 @@ def mouse_select_piece(pos):
     return row, col
 
 
-def main():
+def main():  # todo implement sounds for game start, lost pieces and game won
+            # todo implement AI
     run = True
     clock = pygame.time.Clock()
     game = Game(WIN)
 
-    while run:
+    while run:  # todo implement indicator for player turn
         clock.tick(FPS)
+
+        if game.winner() is not None:
+            print('Player {} won the game!'.format(game.winner()))  # todo implement nice victory picture
+            break
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

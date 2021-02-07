@@ -56,18 +56,30 @@ class Board:
     def remove_piece(self, pieces):
         for piece in pieces:
             self.board[piece.row][piece.col] = 0
+            if piece != 0:
+                if piece.color == YELLOW:
+                    self.yellow_left -= 1
+                if piece.color == BLACK:
+                    self.black_left -= 1
 
-    def get_valid_moves(self, piece):
+    def winner(self):
+        if self.black_left <= 0:
+            return YELLOW
+        if self.yellow_left <= 0:
+            return RED
+
+    def get_valid_moves(self, piece):  # todo for kingpiece enable move forward + backward
+                                        # todo for kingpiece enable backward leap
         moves = {}
         left = piece.col - 1
         right = piece.col + 1
         row = piece.row
 
-        if piece.color == BLACK or piece.king:
-            moves.update(self._traverse_left(row+1, max(row + 3, ROWS), 1, piece.color, left))
-            moves.update(self._traverse_right(row + 1, max(row + 3, ROWS), 1, piece.color, right))
+        if piece.color == BLACK and piece.king == False or piece.color == YELLOW and piece.king:
+            moves.update(self._traverse_left(row+1, min(row + 3, ROWS), 1, piece.color, left))
+            moves.update(self._traverse_right(row + 1, min(row + 3, ROWS), 1, piece.color, right))
 
-        if piece.color == YELLOW or piece.king:
+        if piece.color == YELLOW and piece.king == False or piece.color == BLACK and piece.king:
             moves.update(self._traverse_left(row - 1, max(row-3, -1), -1, piece.color, left))
             moves.update(self._traverse_right(row - 1, max(row - 3, -1), -1, piece.color, right))
         return moves
