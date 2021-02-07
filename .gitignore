@@ -5,6 +5,9 @@
 /workspace.xml
 __pycache__
 
+# Git Project folders #
+.git
+
 # UiPath Project folders #
 ##########################
 .project
