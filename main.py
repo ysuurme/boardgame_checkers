@@ -10,7 +10,7 @@ from checkers.config import WIDTH, HEIGHT, SQUARE_SIZE, BLACK, YELLOW
 from checkers.game import Game
 
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption('Bossche Checkers, verzin is wah gekkers!')
+pygame.display.set_caption('Bossche checkers, verzin is wah gekkers!')
 
 FPS = 60
 
@@ -38,10 +38,8 @@ def main():
                 pos = pygame.mouse.get_pos()
                 row, col = mouse_select_piece(pos)
                 if game.turn == BLACK:
-                    print("It's the turn of BLACK")
                     game.select_piece(row, col)
                 elif game.turn == YELLOW:
-                    print("It's the turn of YELLOW")
                     game.select_piece(row, col)
 
         game.update()

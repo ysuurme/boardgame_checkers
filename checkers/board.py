@@ -64,12 +64,12 @@ class Board:
         row = piece.row
 
         if piece.color == BLACK or piece.king:
-            moves.update(self._traverse_left(row - 1, max(row-3, -1), -1, piece.color, left))
-            moves.update(self._traverse_right(row - 1, max(row - 3, -1), -1, piece.color, right))
-        if piece.color == YELLOW or piece.king:
             moves.update(self._traverse_left(row+1, max(row + 3, ROWS), 1, piece.color, left))
             moves.update(self._traverse_right(row + 1, max(row + 3, ROWS), 1, piece.color, right))
 
+        if piece.color == YELLOW or piece.king:
+            moves.update(self._traverse_left(row - 1, max(row-3, -1), -1, piece.color, left))
+            moves.update(self._traverse_right(row - 1, max(row - 3, -1), -1, piece.color, right))
         return moves
 
     def _traverse_left(self, start, stop, step, color, left, skipped=[]):
