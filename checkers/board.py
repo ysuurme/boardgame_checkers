@@ -43,7 +43,7 @@ class Board:
     def move_piece(self, piece, row, col):
         self.board[piece.row][piece.col], self.board[row][col] = self.board[row][col], self.board[piece.row][piece.col]
         piece.move(row, col)
-        if row == ROWS or row == 0:
+        if row == ROWS -1 or row == 0:
             piece.make_piece_king()
             if piece.color == YELLOW:
                 self.yellow_kings += 1
