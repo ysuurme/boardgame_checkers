@@ -6,7 +6,7 @@ Part 3 - https://www.youtube.com/watch?v=_kOXGzkbnps
 """
 
 import pygame
-from constants import WIDTH, HEIGHT, SQUARE_SIZE, BLACK, YELLOW
+from constants import WIDTH, HEIGHT, SQUARE_SIZE
 from src.game import Game
 
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
