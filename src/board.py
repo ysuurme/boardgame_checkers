@@ -2,12 +2,13 @@
 
 import pygame
 
-from .config import ROWS, COLS, RED, WHITE, SQUARE_SIZE, BLACK, YELLOW, GREY, PADDING, OUTLINE, CROWN
+from constants import ROWS, COLS, RED, WHITE, SQUARE_SIZE, BLACK, YELLOW
+from .piece import Piece
 
 
 class Board:
     def __init__(self):
-        self.board = [[]]
+        self.board = []
         self.black_left = self.yellow_left = 12
         self.black_kings = self.yellow_kings = 0
         self.draw_pieces()
@@ -66,7 +67,7 @@ class Board:
         if self.black_left <= 0:
             return YELLOW
         if self.yellow_left <= 0:
-            return RED
+            return BLACK
 
     def get_valid_moves(self, piece):  # todo for kingpiece enable move forward + backward
                                         # todo for kingpiece enable backward leap
@@ -102,7 +103,7 @@ class Board:
 
                 if last:
                     if step == -1:
-                        row = max(r-3, 0)
+                        row = max(r-3, -1)
                     else:
                         row = min(r+3, ROWS)
 
@@ -137,7 +138,7 @@ class Board:
 
                 if last:
                     if step == -1:
-                        row = max(r - 3, 0)
+                        row = max(r - 3, -1)
                     else:
                         row = min(r + 3, ROWS)
 
@@ -153,45 +154,3 @@ class Board:
             right += 1
 
         return moves
-
-
-class Piece:
-    def __init__(self, row, col, color):
-        self.padding = PADDING
-        self.outline = OUTLINE
-        self.row = row
-        self.col = col
-        self.color = color
-        self.king = False
-
-        if self.color == BLACK:
-            self.direction = 1
-        if self.color == YELLOW:
-            self.direction = -1
-
-        self.x = 0
-        self.y = 0
-
-        self.calc_piece_pos()
-
-    def __repr__(self):
-        return str(self.color)
-
-    def draw_piece(self, win):
-        radius = SQUARE_SIZE // 2 - self.padding
-        pygame.draw.circle(win, GREY, (self.x, self.y), radius + self.outline)
-        pygame.draw.circle(win, self.color, (self.x, self.y), radius)
-        if self.king:
-            win.blit(CROWN, (self.x - CROWN.get_width() // 2, self.y - CROWN.get_height() // 2))
-
-    def calc_piece_pos(self):
-        self.x = SQUARE_SIZE * self.col + SQUARE_SIZE // 2
-        self.y = SQUARE_SIZE * self.row + SQUARE_SIZE // 2
-
-    def make_piece_king(self):
-        self.king = True
-
-    def move(self, row, col):
-        self.row = row
-        self.col = col
-        self.calc_piece_pos()

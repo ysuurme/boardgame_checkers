@@ -6,8 +6,8 @@ Part 3 - https://www.youtube.com/watch?v=_kOXGzkbnps
 """
 
 import pygame
-from checkers.config import WIDTH, HEIGHT, SQUARE_SIZE, BLACK, YELLOW
-from checkers.game import Game
+from constants import WIDTH, HEIGHT, SQUARE_SIZE, BLACK, YELLOW
+from src.game import Game
 
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Bossche checkers, verzin is wah gekkers!')
@@ -24,6 +24,7 @@ def mouse_select_piece(pos):
 
 def main():  # todo implement sounds for game start, lost pieces and game won
             # todo implement AI
+    pygame.init()
     run = True
     clock = pygame.time.Clock()
     game = Game(WIN)
@@ -42,10 +43,7 @@ def main():  # todo implement sounds for game start, lost pieces and game won
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
                 row, col = mouse_select_piece(pos)
-                if game.turn == BLACK:
-                    game.select_piece(row, col)
-                elif game.turn == YELLOW:
-                    game.select_piece(row, col)
+                game.select_piece(row, col)
 
         game.update()
 

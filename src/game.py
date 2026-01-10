@@ -1,6 +1,6 @@
 import pygame
 
-from .config import BLACK, YELLOW, BLUE, SQUARE_SIZE, INDICATOR_SIZE
+from constants import BLACK, YELLOW, BLUE, SQUARE_SIZE, INDICATOR_SIZE
 from .board import Board
 
 
