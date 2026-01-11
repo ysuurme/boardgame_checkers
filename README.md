@@ -2,7 +2,7 @@
 
 A turn-based simulation built with Pygame to apply 'Recursive Pathfinding Algorithms' or in plain language to apply multi-step capturing logic allowing checkers to take multiple pieces in a single move. This project combines the real-time rendering of the board and its pieces through an Object-Oriented Game Architecture.
 
-![Project Demo](assets/boardgame_checkers.gif)
+![Project Demo](assets/boardgame_checkers_lowres.gif)
 
 🛠️ **Skills & Learning Overview:** This project served as a practical application of several core software engineering concepts:
 
