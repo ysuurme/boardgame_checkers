@@ -3,7 +3,7 @@
 import pygame
 
 from constants import ROWS, COLS, RED, WHITE, SQUARE_SIZE, BLACK, YELLOW
-from .piece import Piece
+from .piece import Piece, KingPiece
 
 
 class Board:
@@ -44,12 +44,14 @@ class Board:
     def move_piece(self, piece, row, col):
         self.board[piece.row][piece.col], self.board[row][col] = self.board[row][col], self.board[piece.row][piece.col]
         piece.move(row, col)
-        if row == ROWS -1 or row == 0:
-            piece.make_piece_king()
-            if piece.color == YELLOW:
-                self.yellow_kings += 1
-            elif piece.color == BLACK:
-                self.black_kings += 1
+
+        if row == ROWS - 1 or row == 0:
+            if not isinstance(piece, KingPiece):
+                self.board[row][col] = KingPiece(row, col, piece.color)
+                if piece.color == YELLOW:
+                    self.yellow_kings += 1
+                elif piece.color == BLACK:
+                    self.black_kings += 1
 
     def select_piece(self, row, col):
         return self.board[row][col]
@@ -69,18 +71,17 @@ class Board:
         if self.yellow_left <= 0:
             return BLACK
 
-    def get_valid_moves(self, piece):  # todo for kingpiece enable move forward + backward
-                                        # todo for kingpiece enable backward leap
+    def get_valid_moves(self, piece):
         moves = {}
         left = piece.col - 1
         right = piece.col + 1
         row = piece.row
 
-        if piece.color == BLACK and piece.king == False or piece.color == YELLOW and piece.king:
+        if piece.color == BLACK or isinstance(piece, KingPiece):
             moves.update(self._traverse_left(row+1, min(row + 3, ROWS), 1, piece.color, left))
             moves.update(self._traverse_right(row + 1, min(row + 3, ROWS), 1, piece.color, right))
 
-        if piece.color == YELLOW and piece.king == False or piece.color == BLACK and piece.king:
+        if piece.color == YELLOW or isinstance(piece, KingPiece):
             moves.update(self._traverse_left(row - 1, max(row-3, -1), -1, piece.color, left))
             moves.update(self._traverse_right(row - 1, max(row - 3, -1), -1, piece.color, right))
         return moves

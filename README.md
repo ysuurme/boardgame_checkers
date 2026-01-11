@@ -6,7 +6,7 @@ A turn-based simulation built with Pygame to apply 'Recursive Pathfinding Algori
 
 🛠️ **Skills & Learning Overview:** This project served as a practical application of several core software engineering concepts:
 
-*   **Modular Architecture:** The /src or Source folder models complex systems like the Game Loop (`Game`), Board Logic (`Board`), and Entity Attributes (`Piece`) into distinct classes and files. Example: instead of using a nested list for a board, a Board class manages its own pieces.
+*   **Modular Architecture:** The /src or Source folder models complex systems like the Game Loop (`Game`), Board Logic (`Board`), and Entity Attributes (`Piece`) into distinct classes and files. Example: instead of using a nested list for a board, a Board class manages its own pieces. I added an inheritance pattern by defining a base Piece class and inheriting a KingPiece subclass to focus strictly on specialized attributes of the king piece.
 *   **Mathematical Game Coordination:** Implements arithmetic logic to map logical grid coordinates (Rows/Cols) to screen positions (X/Y) for accurate rendering of the game.
 *   **Recursive Algorithms:** Calculates complex multi-step capture chains (double/triple jumps) for checkers, a core method in the move validation logic.
 *   **Event-Driven Programming:** Manages a real-time game loop to handle user input (mouse clicks) and game events seamlessly.
