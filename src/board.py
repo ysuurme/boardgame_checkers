@@ -13,13 +13,13 @@ class Board:
         self.black_kings = self.yellow_kings = 0
         self.draw_pieces()
 
-    def draw_board(self, win):  # TWT draw_squares
+    def draw_board(self, win):
         win.fill(WHITE)
         for row in range(ROWS):
             for col in range(row % 2, ROWS, 2):
                 pygame.draw.rect(win, RED, (row * SQUARE_SIZE, col * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
 
-    def draw_pieces(self):  # TWT create board
+    def draw_pieces(self):
         for row in range(ROWS):
             self.board.append([])
             for col in range(COLS):
@@ -77,11 +77,11 @@ class Board:
         right = piece.col + 1
         row = piece.row
 
-        if piece.color == BLACK or isinstance(piece, KingPiece):
+        if piece.color == BLACK or isinstance(piece, KingPiece): # if instance of a specific class (KingPiece) can move both ways
             moves.update(self._traverse_left(row+1, min(row + 3, ROWS), 1, piece.color, left))
             moves.update(self._traverse_right(row + 1, min(row + 3, ROWS), 1, piece.color, right))
 
-        if piece.color == YELLOW or isinstance(piece, KingPiece):
+        if piece.color == YELLOW or isinstance(piece, KingPiece): # if instance of a specific class (KingPiece) can move both ways
             moves.update(self._traverse_left(row - 1, max(row-3, -1), -1, piece.color, left))
             moves.update(self._traverse_right(row - 1, max(row - 3, -1), -1, piece.color, right))
         return moves
