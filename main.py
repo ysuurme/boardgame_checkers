@@ -1,10 +1,3 @@
-"""
-Practice project following the tutorials of Tech With Tim
-Part 1 - https://www.youtube.com/watch?v=vnd3RfeG3NM
-Part 2 - https://www.youtube.com/watch?v=LSYj8GZMjWY
-Part 3 - https://www.youtube.com/watch?v=_kOXGzkbnps
-"""
-
 import pygame
 from constants import WIDTH, HEIGHT, SQUARE_SIZE
 from src.game import Game
